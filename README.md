@@ -6,22 +6,41 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red)  
 ![Gradio](https://img.shields.io/badge/Gradio-UI-green)  
 
-This repository implements a **two-layer moderation system** for detecting offensive/abusive language in Turkish text.
+This project detects offensive/abusive language in Turkish text using a **two-layer system**:
 
-1. **Lexicon-based masking**: Normalizes obfuscations, replaces offensive terms with `***`, while preserving spacing.  
-2. **Contextual classification with BERTurk**: Fine-tunes `dbmdz/bert-base-turkish-cased` to classify text into **FLAG / REVIEW / OK** decisions using a dual-threshold policy.
+1. **Lexicon-based masking** – normalizes obfuscations and masks offensive words.  
+2. **Contextual classification (BERTurk)** – fine-tuned `dbmdz/bert-base-turkish-cased` model for detecting abusive context.
 
-## Installation
+---
+
+## 🚀 Features
+- Turkish-specific text normalization.  
+- Lexicon-based profanity masking.  
+- Baseline: TF-IDF + Logistic Regression.  
+- Advanced: Fine-tuned BERTurk model.  
+- Simple Gradio demo for testing.  
+
+---
+
+## 📚 Dataset
+- [TROFF v1.0 (Turkish Offensive Language Dataset)](https://coltekin.github.io/offensive-turkish/troff-v1.0.tsv.gz)  
+- [Turkish Swear Word Lexicons](https://github.com/ooguz/turkce-kufur-karaliste), [d35k/Turkish-Swear-Words](https://github.com/d35k/Turkish-Swear-Words)
+
+---
+
+## 📦 Installation
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-Open the Jupyter notebook and run all cells.  
-Example input for Gradio demo:
+---
+
+
+### Example
 ```
-sen SALAK mısın amk?
+Input:   sen gerçekten çok salakça konuşuyorsun
+Output:  FLAG | score=0.87
 ```
 
-## License
-Distributed under the MIT License. See `LICENSE` for details.
+---
+
